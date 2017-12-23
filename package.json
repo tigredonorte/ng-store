@@ -4,11 +4,17 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
+    "dev": "ng serve --env=local -o",
     "start": "ng serve",
-    "build": "ng build --prod",
-    "test": "ng test",
-    "lint": "ng lint",
-    "e2e": "ng e2e"
+    "build": "ng build",
+    "test": "ng t -env=local",
+    "test-once": "ng t --single-run",
+    "lint": "ng lint --type-check --force",
+    "e2e": "ng e2e -env=e2e",
+    "e2e:watch": "watch \"ng e2e -s false\" src e2e --wait=1",
+    "ci:test": "npm run test-once",
+    "ci:deploy": "ng b -aot",
+    "ci": "npm run ci:test && npm run ci:deploy"
   },
   "private": true,
   "dependencies": {
@@ -21,7 +27,9 @@
     "@angular/platform-browser": "^5.0.0",
     "@angular/platform-browser-dynamic": "^5.0.0",
     "@angular/router": "^5.0.0",
+    "angularfire2": "^5.0.0-rc.4",
     "core-js": "^2.4.1",
+    "firebase": "^4.8.1",
     "rxjs": "^5.5.2",
     "zone.js": "^0.8.14"
   },
